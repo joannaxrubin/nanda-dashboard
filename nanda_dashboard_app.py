@@ -84,9 +84,24 @@ NOTION_API_KEY = st.secrets.get("NOTION_API_KEY", "")  # You'll add this in Stre
 DATABASE_ID = "dc9611d2-af6d-4aa5-9a19-eb5f47aab9b9"
 
 def fetch_notion_tasks():
+    def fetch_notion_tasks():
     """Fetch tasks from Notion database"""
-    # For demo purposes, return sample data
-    # In production, this would call the Notion API
+    try:
+        from notion_integration import NotionClient, get_sample_data
+        
+        api_key = st.secrets.get("NOTION_API_KEY", "")
+        database_id = st.secrets.get("DATABASE_ID", "")
+        
+        if not api_key or not database_id:
+            return get_sample_data()
+        
+        client = NotionClient(api_key, database_id)
+        response = client.query_database()
+        return client.parse_tasks(response)
+    except Exception as e:
+        st.error(f"Error fetching from Notion: {e}")
+        from notion_integration import get_sample_data
+        return get_sample_data()
     return {
         'tasks': [
             {'name': 'Develop 2-3 framework solution options', 'team': 'Tech Team', 'status': 'In Progress', 'priority': '🔥 Critical', 'due': '2024-12-18'},
