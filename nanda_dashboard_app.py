@@ -84,7 +84,6 @@ NOTION_API_KEY = st.secrets.get("NOTION_API_KEY", "")  # You'll add this in Stre
 DATABASE_ID = "dc9611d2-af6d-4aa5-9a19-eb5f47aab9b9"
 
 def fetch_notion_tasks():
-    def fetch_notion_tasks():
     """Fetch tasks from Notion database"""
     try:
         from notion_integration import NotionClient, get_sample_data
@@ -102,20 +101,6 @@ def fetch_notion_tasks():
         st.error(f"Error fetching from Notion: {e}")
         from notion_integration import get_sample_data
         return get_sample_data()
-    return {
-        'tasks': [
-            {'name': 'Develop 2-3 framework solution options', 'team': 'Tech Team', 'status': 'In Progress', 'priority': '🔥 Critical', 'due': '2024-12-18'},
-            {'name': 'Identify contacts at MIT', 'team': 'Outreach Team', 'status': 'Not Started', 'priority': '⚡ High', 'due': '2024-12-18'},
-            {'name': 'Create sponsor target list', 'team': 'Events Team', 'status': 'In Progress', 'priority': '⚡ High', 'due': '2024-12-18'},
-            {'name': 'Create presentation slides - Tech', 'team': 'Tech Team', 'status': 'Not Started', 'priority': '🔥 Critical', 'due': '2024-12-18'},
-            {'name': 'Send initial outreach to 3-5 schools', 'team': 'Outreach Team', 'status': 'Not Started', 'priority': '⚡ High', 'due': '2024-12-18'},
-            {'name': 'Research venue options', 'team': 'Events Team', 'status': 'In Progress', 'priority': '⚡ High', 'due': '2024-12-18'},
-        ],
-        'total_tasks': 21,
-        'completed_tasks': 0,
-        'in_progress': 5,
-        'not_started': 16
-    }
 
 def calculate_countdown(target_date):
     """Calculate days until target date"""
